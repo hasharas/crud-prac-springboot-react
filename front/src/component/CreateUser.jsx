@@ -1,57 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const CreateUser = () => {
+const createUser = ({ user }) => {
 
       const [submit, setSubmit] = useState({
-            fname: '',
-            sname: '',
-            age: '',
-            department: ''
+            fname: "",
+            department: '',
+            age: ''
 
-      })
+      });
 
-      const onSubmit = () => {
-
+      const handleChange = (e) => {
+            setSubmit({ ...submit, [e.target.name]: e.target.value });
       }
 
+      const handleSubmit = (e) => {
+            e.priventDefault();
 
+            setSubmit({ fname: '', department: '', age: '' });
+      }
 
       return (
             <div>
-                  <form action="" onSubmit='' className='flex flex-col gap-5 w-80'>
-                        <input
-                              type="text"
+                  <form action="" onSubmit={handleSubmit}>
+                        <input type="text"
+                              value={submit.fname}
                               name='fname'
-                              value=''
-                              placeholder='fist Name '
-                              className='border' />
+                              onChange={handleChange}
+                              placeholder='First Name'
+                              required />
 
-                        <input
-                              type="text"
-                              name='sname'
-                              value=''
-                              placeholder='Second Name'
-                              className='border' />
+                        <input type="text"
+                              name='department'
+                              value={submit.department}
+                              onChange={handleChange}
+                              placeholder='department'
+                              required />
 
-                        <input
-                              type="number"
+                        <input type="text"
                               name='age'
-                              value=''
+                              value={submit.age}
+                              onChange={handleChange}
                               placeholder='Age'
-                              className='border' />
+                              required />
 
-                        <select name="" id="" className='border'>
-                              <option value="" name='fas'>FAS</option>
-                              <option value="" name='fcbs'>FCBS</option>
-                        </select>
-
-                        <div className='flex justify-between'>
-                              <button className='p-3 border bg-green-500 rounded-lg'>Submit</button>
-                              <button className='p-3 border bg-red-500 rounded-lg'>Cancel</button>
-                        </div>
                   </form>
             </div>
       );
 }
 
-export default CreateUser;
+export default createUser;
