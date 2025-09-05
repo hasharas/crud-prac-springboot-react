@@ -1,39 +1,76 @@
 
 
-import axios from 'axios';
+// import axios from 'axios';
 
-class HttpService {
+// class HttpService {
+//       constructor() {
+//             this.service = axios.create();
+//             this.service.interceptors.response.use(
+//                   this.handleSuccess,
+//                   this.handleError
+//             );
+//       }
+//       sendRequst = async () => {
+
+//       }
+
+//       handleSuccess = () => {
+
+//       }
+
+//       handleError = (error) => {
+//             if (!error.responce) {
+//                   return {
+//                         success: false,
+//                         message: 'network errorr,try again',
+//                         data: null
+//                   };
+//             }
+//             // const status = error.responce.status;
+//             // if([])
+
+//             return Promise.reject(error);
+
+//       }
+
+
+// }
+
+// export default HttpService;
+
+import axios from 'axios'
+
+class HttpServcice {
       constructor() {
             this.service = axios.create();
             this.service.interceptors.response.use(
-                  this.handleSuccess,
-                  this.handleError
+                  this.handleSucces,
+                  this.handleErros
             );
       }
-      sendRequst = async () => {
 
+      sendRequest = () => {
+            return
       }
 
-      handleSuccess = () => {
-
+      handleSucces = (responce) => {
+            return responce?.data;
       }
 
-      handleError = (error) => {
+      handleErros = (error) => {
             if (!error.responce) {
                   return {
-                        success: false,
-                        message: 'network errorr,try again',
+                        succes: false,
+                        message: "internal server error",
                         data: null
-                  };
+                  }
             }
-            // const status = error.responce.status;
-            // if([])
+
+            const status = ''
 
             return Promise.reject(error);
-
       }
-
 
 }
 
-export default HttpService;
+export default HttpServcice;
