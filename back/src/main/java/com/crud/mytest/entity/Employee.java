@@ -1,31 +1,24 @@
 package com.crud.mytest.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Table(name = "employee")
 @Data
-@NoArgsConstructor
+@Table(name = "employee")
 @AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
 
       @Id
-      @GeneratedValue(strategy = GenerationType.IDENTITY)
-      private Long id;
+      public Long id;
 
       @Column(nullable = false)
-      private String name;
+      public String name;
 
       @Column(nullable = false, unique = true)
-      private String email;
+      public String email;
 
-      private String department;
+      public String department;
+
 }
