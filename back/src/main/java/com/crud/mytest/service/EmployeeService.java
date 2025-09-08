@@ -1,7 +1,9 @@
 
 package com.crud.mytest.service;
 
+import java.lang.StackWalker.Option;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,7 @@ public class EmployeeService {
       @Autowired
       public EmployeeRepository employeeRepository;
 
-      public Employee createEmployee(Employee employee) {
+      public Employee CreateEmployee(Employee employee) {
             return employeeRepository.save(employee);
       }
 
@@ -23,4 +25,16 @@ public class EmployeeService {
             return employeeRepository.findAll();
       }
 
+      public Optional<Employee> GetEmployeeById(Long id) {
+            return employeeRepository.findById(id);
+      }
+
+      public Employee UpdateEmployeeById(Long id, Employee UpdateEmployeeById) {
+            return employeeRepository.findById(id).map(emp -> {
+                  emp.setName(UpdateEmployeeById.getName());
+                  emp.setEmail(UpdateEmployeeById.getEmail());
+                  emp.setDepartment(UpdateEmployeeById.getDepartment());
+                  return employeeRepository.save(emp);
+            }).orElseThrow(() -> new RuntimeException("Employee not found with id " + id));
+      }
 }
